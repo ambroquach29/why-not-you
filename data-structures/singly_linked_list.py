@@ -25,7 +25,7 @@ class SinglyLinkedList:
                 print(f'{current.element}', end='')
             current = current.next
         print(' -> None')
-        return (f'Head = {self.head.element}, Tail = {self.tail.element}, Size = {len(self)}\n')
+        return f'Head = {self.head.element}, Tail = {self.tail.element}, Size = {len(self)}\n'
 
     def is_empty(self):
         '''Return True if the list is empty, False if not empty'''
