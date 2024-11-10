@@ -74,28 +74,90 @@ class DoublyLinkedList:
         new_node = Node(value)
         for _ in range(index - 1):  # Traverse to the node before the target position
             current = current.next
-        
-        new_node.next = current.next # update new_node_next to keep reference of remaining list
+
+        # update new_node_next to keep reference of remaining list
+        new_node.next = current.next
         new_node.prev = current  # update new_node_prev to point to current
-        current.next.prev = new_node # update next_node_prev point back to new node
-        current.next = new_node # update current_node_next to point to new_node
-        
+        current.next.prev = new_node  # update next_node_prev point back to new node
+        current.next = new_node  # update current_node_next to point to new_node
+
         self.size += 1
         return f'Element: "{value}" inserted at position {index}.'
 
     # Delete Methods
-
     def delete_from_head(self):
-        pass
+        if self.is_empty():
+            return
+
+        current = self.head
+        if len(self) == 1:
+            self.head = self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            current.next = None
+
+        self.size -= 1
+        return f'Element: "{current.element}" removed'
 
     def delete_from_tail(self):
-        pass
+        if self.is_empty():
+            return
+
+        current = self.tail
+        if len(self) == 1:
+            self.head = self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            current.prev = None
+
+        self.size -= 1
+        return f'Element: "{current.element}" removed'
 
     def delete_by_value(self, value):
-        pass
+        if self.is_empty():
+            return 'List is empty. Nothing to remove.'
+        if len(self) == 1 or value == self.head.element:
+            return f'{self.delete_from_head()}.'
+
+        current = self.head
+        while current is not None and current.element != value:
+            current = current.next
+
+        if current == self.tail:
+            return f'{self.delete_from_tail()}.'
+        if current is None:
+            return f'Element: "{value}" is not found.'
+
+        current.prev.next = current.next
+        current.next.prev = current.prev
+        current.next = current.prev = None
+
+        self.size -= 1
+        return f'Element: "{current.element}" removed.'
 
     def delete_at_position(self, index):
-        pass
+        if self.is_empty():
+            return 'List is empty. Nothing to remove.'
+        if index < 0 or index >= len(self):
+            return 'Index is out of bound.'
+
+        if len(self) == 1 or index == 0:
+            return f'{self.delete_from_head()} at position {index}.'
+        if index == len(self) - 1:
+            return f'{self.delete_from_tail()} at position {index}.'
+
+        current = self.head
+        for _ in range(index):
+            current = current.next
+
+        current.prev.next = current.next
+        current.next.prev = current.prev
+        current.next = current.prev = None
+
+        self.size -= 1
+        return f'Element: "{current.element}" removed at position {index}.'
 
     # Traversal Methods
     def traverse_forward(self):
@@ -122,7 +184,8 @@ class DoublyLinkedList:
         current = self.head
         while current is not None:
             if current.element == value:
-                print(f'Element: "{current.element}" found at position: {index}')
+                print(
+                    f'Element: "{current.element}" found at position: {index}')
                 return
             else:
                 current = current.next
