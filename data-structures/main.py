@@ -23,6 +23,11 @@ if __name__ == '__main__':
         doubly = DoublyLinkedList()
         doubly.insert_at_head("Ambro")
         doubly.insert_at_head("Betty")
+        doubly.insert_at_tail("DeEnna")
+        print(doubly)
+        doubly.search("DeEnna")
+        print(doubly.insert_at_position(1, "Sam"))
         doubly.traverse_forward()
         doubly.traverse_backward()
-
+        doubly.search("Sam")
+        print(doubly)

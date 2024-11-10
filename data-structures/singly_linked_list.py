@@ -85,7 +85,7 @@ class SinglyLinkedList:
         return f'Removed element: {popped_node}'
 
     def insert(self, element, index):
-        if index > len(self):
+        if index < 0 or index > len(self):
             print('Index is out of range.')
             return
 
@@ -99,7 +99,7 @@ class SinglyLinkedList:
         # Insert at input position
         new_node = Node(element)
         current = self.head
-        for _ in range(index - 1):  # index - 1 to offset current being ahead
+        for _ in range(index - 1):  # Traverse the list until the node before the target position
             if current is not None:
                 current = current.next
         if current:
@@ -127,7 +127,7 @@ class SinglyLinkedList:
         return 'Element not found.'
 
     def remove_at_index(self, index):
-        if index >= self.size:
+        if index < 0 or index >= self.size:
             return 'Index is out of range.'
         if self.is_empty():
             return 'List is empty. Nothing to remove.'
