@@ -1,5 +1,7 @@
 from singly_linked_list import SinglyLinkedList
 from doubly_linked_list import DoublyLinkedList
+from stack import Stack
+from queue import Queue
 
 if __name__ == '__main__':
     sll_flag = False
@@ -25,12 +27,12 @@ if __name__ == '__main__':
         doubly.insert_at_head("Betty")
         doubly.insert_at_tail("DeEnna")
         print(doubly)
-        
+
         print(doubly.insert_at_position(1, "Sam"))
         doubly.traverse_forward()
         doubly.traverse_backward()
         doubly.search("Ambro")
-        
+
         # print(doubly.delete_from_head())
         # print(doubly.delete_from_tail())
         print(doubly)
@@ -42,7 +44,7 @@ if __name__ == '__main__':
         print(doubly.delete_at_position(2))
         print(doubly.delete_at_position(1))
         print(doubly.delete_at_position(0))
-        
+
         doubly.traverse_forward()
         doubly.traverse_backward()
         print(doubly)
