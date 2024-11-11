@@ -78,6 +78,7 @@ if __name__ == '__main__':
         print(doubly)
 
     def stack_methods():
+        '''Test Stack Methods'''
         stack = Stack([1, 2, 3, 4])
         print(stack)
 
@@ -87,6 +88,12 @@ if __name__ == '__main__':
         print(f'Popped element: {stack.pop()}')
         print(stack)
 
-    def queue_methods(): pass
+    def queue_methods():
+        '''Test Queue Methods'''
+        queue = Queue([9, 100, 207, 5000, 698])
+        print(queue)
+        queue.enqueue(179)
+        queue.dequeue()
+        print(queue)
 
-    switch_test_methods(DS.STACK)
+    switch_test_methods(DS.QUEUE)
