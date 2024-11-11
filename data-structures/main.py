@@ -2,12 +2,40 @@ from singly_linked_list import SinglyLinkedList
 from doubly_linked_list import DoublyLinkedList
 from stack import Stack
 from queue import Queue
+from enum import Enum
+
+
+class DS(Enum):
+    SLL = 'singly linked list'
+    DLL = 'doubly linked list'
+    STACK = 'stack'
+    QUEUE = 'queue'
+    PQ = 'priority queue'
+    HT = 'hash table'
+    BT = 'binary tree'
+    BST = 'binary search tree'
+    TRIE = 'trie'
+    MIN_H = 'min heap'
+    MAX_H = 'max heap'
+    GRAPH = 'graph'
+
 
 if __name__ == '__main__':
-    sll_flag = False
-    dll_flag = True
-    '''Test Singly Linked List Methods'''
-    if sll_flag == True:
+    def switch_test_methods(choice):
+        match choice:
+            case DS.SLL:
+                return singly_linked_list_methods()
+            case DS.DLL:
+                return doubly_linked_list_methods()
+            case DS.STACK:
+                return stack_methods()
+            case DS.QUEUE:
+                return queue_methods()
+            case _:
+                return 'No data structure selected.'
+
+    def singly_linked_list_methods():
+        '''Test Singly Linked List Methods'''
         singly = SinglyLinkedList()
         singly.add_last(1)
         singly.add_last(2)
@@ -20,8 +48,8 @@ if __name__ == '__main__':
         print(singly.remove_at_index(8))
         print(singly)
 
-    '''Test Doubly Linked List Methods'''
-    if dll_flag == True:
+    def doubly_linked_list_methods():
+        '''Test Doubly Linked List Methods'''
         doubly = DoublyLinkedList()
         doubly.insert_at_head("Ambro")
         doubly.insert_at_head("Betty")
@@ -48,3 +76,17 @@ if __name__ == '__main__':
         doubly.traverse_forward()
         doubly.traverse_backward()
         print(doubly)
+
+    def stack_methods():
+        stack = Stack([1, 2, 3, 4])
+        print(stack)
+
+        stack.push(5)
+        print(f'Top of stack: {stack.peek()}')
+        print(stack)
+        print(f'Popped element: {stack.pop()}')
+        print(stack)
+
+    def queue_methods(): pass
+
+    switch_test_methods(DS.STACK)
