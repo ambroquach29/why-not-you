@@ -1,7 +1,8 @@
 from singly_linked_list import SinglyLinkedList
 from doubly_linked_list import DoublyLinkedList
-from stack import Stack
-from queue import Queue
+from custom_stack import Stack
+from custom_queue import Queue
+from binary_tree import BinaryTree
 from enum import Enum
 
 
@@ -31,6 +32,14 @@ if __name__ == '__main__':
                 return stack_methods()
             case DS.QUEUE:
                 return queue_methods()
+            case DS.PQ:
+                return priority_queue_methods()
+            case DS.HT:
+                return hash_table_methods()
+            case DS.BT:
+                return binary_tree_methods()
+            case DS.BST:
+                return binary_search_tree_methods()
             case _:
                 return 'No data structure selected.'
 
@@ -95,5 +104,46 @@ if __name__ == '__main__':
         queue.enqueue(179)
         queue.dequeue()
         print(queue)
+    
+    def priority_queue_methods(): pass
+    def hash_table_methods(): pass
+    def binary_tree_methods():
+        binary_tree = BinaryTree()
+        binary_tree.insert(1)
+        binary_tree.insert(2)
+        binary_tree.insert(3)
+        binary_tree.insert(4)
+        binary_tree.insert(5)
+        binary_tree.insert(6)
+        binary_tree.insert(7)
+        binary_tree.insert(8)
+        
+        binary_tree.print()
+        binary_tree.inorder_traversal()
+        
+        found_bfs = binary_tree.bfs(8)
+        print(f'Value: {found_bfs} is found.') if found_bfs else print(f'No value is found:')
+        found_dfs = binary_tree.dfs(8)
+        print(f'Value: {found_dfs} is found.') if found_dfs else print(
+            f'No value is found:')
+        
+        tree_height = binary_tree.get_height()
+        print(f'Tree Height: {tree_height}')
+        
+        tree_size = binary_tree.get_size()
+        print(f'Tree Size: {tree_size}')
+        
+        print(f'Tree is empty: {binary_tree.is_empty()}')
+        binary_tree.level_order_traversal()
+        
+        tree_list = binary_tree.to_list_levelorder()
+        print(f'Level Order List: {tree_list}')
+        
+        path = binary_tree.find_path_from_root(5)
+        print(f'Path from root: {path}')
+        
+    def binary_search_tree_methods():
+        pass
+        
 
-    switch_test_methods(DS.QUEUE)
+    switch_test_methods(DS.BT)
